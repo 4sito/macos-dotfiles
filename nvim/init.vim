@@ -99,7 +99,7 @@ source $HOME/.config/nvim/themes/gruvbox.vim
 
 
 
-command Lat execute "!pdflatex %:t"
+command Lat execute "!pdflatex %:t && mv *.aux *.log aux/"
 " Nerd Tree remaps
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
