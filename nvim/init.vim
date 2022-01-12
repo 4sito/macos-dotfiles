@@ -58,8 +58,8 @@ Plug 'itchyny/lightline.vim'
 " - https://github.com/Valloric/YouCompleteMe
 " - https://github.com/nvim-lua/completion-nvim
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
 
 " If you want :UltiSnipsEdit to split your window.
@@ -99,7 +99,7 @@ source $HOME/.config/nvim/themes/gruvbox.vim
 
 
 
-command Lat execute "!pdflatex %:t && mv *.log aux/"
+command Lat execute "!pdflatex %:t"
 " Nerd Tree remaps
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
