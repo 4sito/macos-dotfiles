@@ -64,10 +64,11 @@ hyper - m : yabai -m window --space prev; yabai -m space --focus prev
 #shift + cmd - d : yabai -m window --resize right:-20:0
 
 ## rotate tree 90
-hyper - d : yabai -m space --rotate 90
+#hyper - d : yabai -m space --rotate 90
 
 ## flip the tree vertically
-hyper - 4 : yabai -m space --mirror y-axis
+#hyper - 4 : yabai -m space --mirror y-axis
+
 # mirror tree y-axis
 #alt - y : yabai -m space --mirror y-axis
 ## mirror tree x-axis
@@ -99,10 +100,6 @@ hyper - f : yabai -m window --toggle zoom-fullscreen
 #hyper - o : yabai -m query --spaces | jq -re ".[] | select(.visible == 1).index" | xargs -I{} yabai -m query --windows --space {} | jq -sre "add | sort_by(.display, .frame.x, .frame.y, .id) | reverse | nth(index(map(select(.focused == 1))) - 1).id" | xargs -I{} yabai -m window --focus {}
 
 #alt - n : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus first
-
-# go to each window WITHOUT going into a stack
-# ctrl + alt + cmd + lshift - o : yabai -m query --spaces | jq -re ".[] | select(.visible == 1).index" | xargs -I{} yabai -m query --windows --space {} | jq -re "[.[] | select((.\"stack-index\" <= 1) and (.app != \"Hammerspoon\"))]" | jq -sre "add | sort_by(.display, .frame.x, .frame.y, .id) | reverse | nth(index(map(select(.focused == 1))) - 1).id" | xargs -I{} yabai -m window --focus {}
-ctrl + alt + cmd + lshift - o : yabai -m query --spaces | jq -re ".[] | select(.visible == 1).index" | xargs -I{} yabai -m query --windows --space {} | jq -re "[.[] | select(.app != \"Hammerspoon\")]" | jq -sre "add | sort_by(.display, .frame.x, .frame.y, .id) | reverse | nth(index(map(select(.focused == 1))) - 1).id" | xargs -I{} yabai -m window --focus {}
 
 # Toggle foucus on a stack
 #ctrl + alt + cmd + lshift - return : yabai -m window --focus stack.next || yabai -m window --focus stack.first
