@@ -15,13 +15,15 @@ hyper - backspace : $(yabai -m window $(yabai -m query --windows --window | jq -
 #lshift - x : terminal-notifier -message "$(yabai -m query --windows --window | jq -re ".id")"
 
 # open applications
-## open terminal
+
 hyper - return : /Applications/iTerm.app/Contents/MacOS/iTerm2
 hyper - space  : /Applications/Safari.app/Contents/MacOS/Safari
 ctrl  - m      : /Applications/Spotify.app/Contents/MacOS/Spotify
 ctrl  - d      : /Applications/Skim.app/Contents/MacOS/Skim
 ctrl  - w      : /Applications/WhatsApp.app/Contents/MacOS/WhatsApp
+
 #focus windows
+
 cmd - left : yabai -m window --focus west
 cmd - up   : yabai -m window --focus north
 cmd - down : yabai -m window --focus south
@@ -42,10 +44,6 @@ hyper - m : yabai -m window --space prev; yabai -m space --focus prev
 
 
 # move window
-
-## send window to monitor and follow focus
-#hyper - u : /Users/jesseskelton/CustomScripts/SwitchSpaces/moveWindowLeftAndFollowFocus.sh
-#hyper - p : /Users/jesseskelton/CustomScripts/SwitchSpaces/moveWindowRightAndFollowFocus.sh
 
 ## focus display
 ctrl + cmd - 1 : yabai -m window --space 1 yabai -m display --focus 1
