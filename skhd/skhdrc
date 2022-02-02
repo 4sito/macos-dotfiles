@@ -5,7 +5,7 @@
 ## HYPER == SHIFT + CMD + ALT + OPTION
 
 ## Quickly restart the yabai launch agent
-hyper - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+cmd + shift - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
 
 ## Close active application
 hyper - backspace : $(yabai -m window $(yabai -m query --windows --window | jq -re ".id") --close)
@@ -48,8 +48,10 @@ hyper - m : yabai -m window --space prev; yabai -m space --focus prev
 #hyper - p : /Users/jesseskelton/CustomScripts/SwitchSpaces/moveWindowRightAndFollowFocus.sh
 
 ## focus display
-#ctrl + cmd - 1 : yabai -m window --display 1 yabai -m display --focus 1
-#ctrl + cmd - 2 : yabai -m window --display 2 yabai -m display --focus 2
+ctrl + cmd - 1 : yabai -m window --space 1 yabai -m display --focus 1
+ctrl + cmd - 2 : yabai -m window --space 2 yabai -m display --focus 2
+ctrl + cmd - 3 : yabai -m window --space 3 yabai -m display --focus 3
+ctrl + cmd - 4 : yabai -m window --space 4 yabai -m display --focus 4
 
 ## increase window size
 #shift + alt - a : yabai -m window --resize left:-20:0
@@ -75,29 +77,15 @@ hyper - m : yabai -m window --space prev; yabai -m space --focus prev
 #alt - x : yabai -m space --mirror x-axis
 
 
-# show next space per display
-#hyper - 1 : /Users/jesseskelton/CustomScripts/SwitchSpaces/switchAndFocus.sh 1
-#hyper - 2 : /Users/jesseskelton/CustomScripts/SwitchSpaces/switchAndFocus.sh 2
-#hyper - 3 : /Users/jesseskelton/CustomScripts/SwitchSpaces/switchAndFocus.sh 3
 
-#ctrl + alt + cmd + lshift - 1 : /Users/jesseskelton/CustomScripts/SwitchSpaces/switchAndFocusSIP.sh 1
-#ctrl + alt + cmd + lshift - 2 : /Users/jesseskelton/CustomScripts/SwitchSpaces/switchAndFocusSIP.sh 2
-#ctrl + alt + cmd + lshift - 3 : /Users/jesseskelton/CustomScripts/SwitchSpaces/switchAndFocusSIP.sh 3
 
 ## toggle window fullscreen zoom
 hyper - f : yabai -m window --toggle zoom-fullscreen
-
-# cycle through windows
-# cycle backwards
-#hyper - i : yabai -m query --spaces | jq -re ".[] | select(.visible == 1).index" | xargs -I{} yabai -m query --windows --space {} | jq -sre "add | sort_by(.display, .frame.x, .frame.y, .id) | nth(index(map(select(.focused == 1))) - 1).id" | xargs -I{} yabai -m window --focus {}
-#hyper - i : yabai -m query --spaces | jq -re ".[] | select(.visible == 1).index" | xargs -I{} yabai -m query --windows --space {} | jq -sre "add | sort_by(.display, .frame.x, .frame.y, .id) | nth(index(map(select(.focused == 1))) - 1).id" | xargs -I{} yabai -m window --focus {}
 
 #alt - p : yabai -m window --focus stack.prev || yabai -m window --focus prev || yabai -m window --focus last
 #
 # ctrl + alt + cmd + rshift - i : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
 
-#hyper - 0x29 : yabai -m query --spaces \
-#hyper - o : yabai -m query --spaces | jq -re ".[] | select(.visible == 1).index" | xargs -I{} yabai -m query --windows --space {} | jq -sre "add | sort_by(.display, .frame.x, .frame.y, .id) | reverse | nth(index(map(select(.focused == 1))) - 1).id" | xargs -I{} yabai -m window --focus {}
 
 #alt - n : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus first
 
@@ -118,24 +106,11 @@ hyper - f : yabai -m window --toggle zoom-fullscreen
 #yabai -m window --grid 4:4:1:1:2:2 ## toggle sticky alt - s : yabai -m window --toggle sticky ## toggle sticky, float and resize to picture-in-picture size alt - p : yabai -m window --toggle sticky;\ yabai -m window --grid 5:5:4:0:1:1 ## change layout of desktop ctrl + alt - a : yabai -m space --layout bsp ctrl + alt - d : yabai -m space --layout float
 
 ## toggle window split type
-#alt - e : yabai -m window --toggle split
+hyper - e : yabai -m window --toggle split
 
 ## toggle window border
 #shift + alt - b : yabai -m window --toggle border
 
-## create desktop, move window and follow focus
-#shift + cmd - n : yabai -m space --create && \
-#index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
-#yabai -m window --space "${index}" && \
-#yabai -m space --focus "${index}"
-
-## create desktop and follow focus
-#shift + alt - n : yabai -m space --create && \
-#index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
-#yabai -m space --focus "${index}"
-
-## destroy desktop
-#cmd + alt - w : yabai -m space --destroy
 
 ## fast focus desktop
 #cmd + alt - x : yabai -m space --focus last
