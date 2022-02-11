@@ -57,7 +57,7 @@ hyper - w : yabai -m window --resize top:0:20
 hyper - d : yabai -m window --resize right:-20:0
 
 # toggle between bsp and stack mode
-hyoer - t : yabai -m space --layout "$(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "stack" else "bsp" end')"
+hyper - t : yabai -m space --layout "$(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "stack" else "bsp" end')"
 
 ## toggle window fullscreen zoom
 hyper - f : yabai -m window --toggle zoom-fullscreen
