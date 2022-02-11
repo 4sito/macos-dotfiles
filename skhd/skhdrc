@@ -62,9 +62,9 @@ hyper - t : yabai -m space --layout "$(yabai -m query --spaces --space | jq -r '
 ## toggle window fullscreen zoom
 hyper - f : yabai -m window --toggle zoom-fullscreen
 
-ctrl - p : yabai -m window --focus stack.prev || yabai -m window --focus prev || yabai -m window --focus last
+hyper - p : yabai -m window --focus stack.prev || yabai -m window --focus prev || yabai -m window --focus last
 
-ctrl - o : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus first
+hyper - o : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus first
 
 ## float / unfloat window and center on screen
 cmd + shift - space: yabai -m window --toggle float; yabai -m window --grid 4:4:1:1:2:2 
