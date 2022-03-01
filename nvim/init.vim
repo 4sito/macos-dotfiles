@@ -1,3 +1,9 @@
+" my neovim configuration
+
+
+
+"{{{ Plugins
+
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
@@ -7,6 +13,9 @@ call plug#begin('~/.vim/plugged')
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
+
+" Vim surround
+Plug 'tpope/vim-surround'
 
 " Any valid git URL is allowed
 Plug 'https://github.com/junegunn/vim-github-dashboard.git'
@@ -31,7 +40,7 @@ Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 " Unmanaged plugin (manually installed and updated)
-Plug '~/my-prototype-plugin'
+" Plug '~/my-prototype-plugin'
 
 " deoplete
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -40,20 +49,31 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'lervag/vimtex'
 
 " Nerd tree "
-Plug 'preservim/nerdtree'
+Plug 'scrooloose/nerdtree'
 
 " light-line 
 Plug 'itchyny/lightline.vim'
 
 " Initialize plugin system
 
+"}}}
+
+
+"{{{ Custom Settings
 " show line number
 :set number
 
 " show mode in status bar
 :set noshowmode
 
+:set wildmenu
 
+set foldmethod=marker
+
+"}}}
+
+
+"{{{ Plugin Settings
 " Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
 " - https://github.com/Valloric/YouCompleteMe
 " - https://github.com/nvim-lua/completion-nvim
@@ -92,29 +112,32 @@ call deoplete#custom#var('omni', 'input_patterns', {
       \ 'tex': g:vimtex#re#deoplete
       \})
 
+"}}}
+
 " this sets the colorscheme
 
 source $HOME/.config/nvim/themes/gruvbox.vim
 
-
-
+"{{{ Custom Commands
 
 command Lat execute "!pdflatex %:t"
+command Comp execute "!gcc -o %< %"
 " Nerd Tree remaps
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
+nnoremap <C-r> :source ~/.config/nvim/init.vim<CR>
 
 " saving remap
 nnoremap <C-s> :w<CR>
 nnoremap <C-q> :q<CR>
 " latex compiling
 nnoremap <C-l> :Lat<CR>
-
-
-
+nnoremap <C-c> :Comp<CR>
 " inverse search pdf
 
+
+"{{{2 VimTex 
 function! SetServerName()
     let nvim_server_file = $TEMP . "/curnvimserver.txt"
     let nvim_server_file = "/tmp/curnvimserver.txt"
@@ -127,3 +150,5 @@ augroup vimtex_common
     autocmd FileType tex call SetServerName()
 augroup END
 
+"}}}2
+"}}}
