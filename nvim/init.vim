@@ -54,6 +54,7 @@ Plug 'scrooloose/nerdtree'
 " light-line 
 Plug 'itchyny/lightline.vim'
 
+Plug 'Raimondi/delimitMate'
 " Initialize plugin system
 
 "}}}
@@ -114,20 +115,23 @@ call deoplete#custom#var('omni', 'input_patterns', {
 
 "}}}
 
+"{{{ Color Scheme & Theme
 " this sets the colorscheme
 
 source $HOME/.config/nvim/themes/gruvbox.vim
 
+"}}}
+
 "{{{ Custom Commands
 
 command Lat execute "!pdflatex %:t"
-command Comp execute "!gcc -o %< %"
+command Comp execute "!gcc -o %<.out %"
 " Nerd Tree remaps
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 nnoremap <C-r> :source ~/.config/nvim/init.vim<CR>
-
+"nnoremap <C-g> :!gucp<CR>
 " saving remap
 nnoremap <C-s> :w<CR>
 nnoremap <C-q> :q<CR>
