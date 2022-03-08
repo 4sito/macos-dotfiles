@@ -115,6 +115,7 @@ call deoplete#custom#var('omni', 'input_patterns', {
 
 "}}}
 
+
 "{{{ Color Scheme & Theme
 " this sets the colorscheme
 
@@ -122,22 +123,27 @@ source $HOME/.config/nvim/themes/gruvbox.vim
 
 "}}}
 
+
 "{{{ Custom Commands
 
 command Lat execute "!pdflatex %:t"
-command Comp execute "!gcc -o %<.out %"
+command Comp execute "!gcc -Wall -Wextra -pedantic -o %<.out %"
+command Cexec execute "!./%<.out"
+
 " Nerd Tree remaps
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
-nnoremap <C-r> :source ~/.config/nvim/init.vim<CR>
+nnoremap <C-e> :source ~/.config/nvim/init.vim<CR>
 "nnoremap <C-g> :!gucp<CR>
 " saving remap
 nnoremap <C-s> :w<CR>
 nnoremap <C-q> :q<CR>
 " latex compiling
+
 nnoremap <C-l> :Lat<CR>
 nnoremap <C-c> :Comp<CR>
+nnoremap <C-x> :Cexec<CR>
 " inverse search pdf
 
 

@@ -25,6 +25,7 @@ yabai -m rule --add app="^Logi Options$" manage=off
 
 
 # allocating spaces to apps
+
 #browser
 yabai -m rule --add app="^Safari$" space=2
 
@@ -32,10 +33,13 @@ yabai -m rule --add app="^Safari$" space=2
 yabai -m rule --add app="^(iTerm2|Skim|Preview)$" space=1
 
 # Messagges and Whatsapp
-yabai -m rule --add app="^(WhatsApp|Messages)$" space=3
+yabai -m rule --add app="^(WhatsApp|Messages)$" space=4
+
+# VSCode
+yabai -m rule --add app="^(Visual Studio Code)$" space=3
 
 # Spotify
-yabai -m rule --add app="^Spotify$" space=4
+yabai -m rule --add app="^Spotify$" space=5
 
 
 ## Some random global settings
@@ -44,22 +48,18 @@ yabai -m config focus_follows_mouse          on
 
 # New window spawns to the right if vertical split, or bottom if horizontal split
 yabai -m config window_placement second_child
-#yabai -m config window_topmost on
+yabai -m config window_topmost on
 #yabai -m config window_shadow float
-yabai -m config window_opacity off
+yabai -m config window_opacity on
 #yabai -m config window_opacity_duration 0.00
-#yabai -m config active_window_opacity 1.0
-#yabai -m config normal_window_opacity        0.97
-#yabai -m config window_border                on 
-
-## WITH SIP ENABLED (Installed Limelight seperately, Don't need this)
-#yabai -m config window_border off
+yabai -m config active_window_opacity 1.0
+yabai -m config normal_window_opacity 0.80
 
 ## WTIH SIP DISABLED (Limelight build into Yabai, enable it here)
 yabai -m config window_border on
 yabai -m config window_border_width 3
-yabai -m config active_window_border_color 0xFF40FF00
-#yabai -m config normal_window_border_color 0x00FFFFFF
+yabai -m config active_window_border_color 0xFF3399FF
+yabai -m config normal_window_border_color 0xFF1A1A00
 #yabai -m config insert_feedback_color        0xffd75f5f
 
 ## some other settings
@@ -86,7 +86,13 @@ yabai -m config window_gap 20
 
 
 ## If I close the active window, focus on any other visible window.
-#yabai -m signal --add event=window_destroyed action="bash /Users/asito/CustomScripts/SwitchSpaces/window-focus-on-destroy.sh"
+yabai -m signal --add event=window_destroyed action="bash /Users/asito/CustomScripts/SwitchSpaces/window-focus-on-destroy.sh"
+
+sudo yabai --load-sa
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+
+
+YABAI_CERT=yabai-cert sh -c "$(curl -fsSL "https://git.io/update-yabai")" &
 
 echo "yabai configuration loaded.."
 

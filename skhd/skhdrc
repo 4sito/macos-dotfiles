@@ -29,10 +29,10 @@ cmd - down : yabai -m window --focus south
 cmd - right: yabai -m window --focus east
 
 ## swap window
-cmd + shift - left : yabai -m window --swap west
-cmd + shift - down : yabai -m window --swap south
-cmd + shift - up : yabai -m window --swap north
-cmd + shift - right : yabai -m window --swap east # 0x21 is the "[" key
+hyper - left : yabai -m window --swap west
+hyper - down : yabai -m window --swap south
+hyper - up : yabai -m window --swap north
+hyper - right : yabai -m window --swap east # 0x21 is the "[" key
 
 # send window to space and follow with focus
 hyper - n : yabai -m window --space next; yabai -m space --focus next
@@ -79,4 +79,4 @@ cmd + shift - space: yabai -m window --toggle float; yabai -m window --grid 4:4:
 hyper - e : yabai -m window --toggle split
 
 ## toggle window border
-#shift + alt - b : yabai -m window --toggle border
+hyper - b : yabai -m window --toggle border
