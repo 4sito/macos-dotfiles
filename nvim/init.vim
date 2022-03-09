@@ -14,6 +14,9 @@ call plug#begin('~/.vim/plugged')
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
 
+" gruvbox-material colorscheme
+Plug 'sainnhe/gruvbox-material'
+
 " Vim surround
 Plug 'tpope/vim-surround'
 
@@ -21,29 +24,31 @@ Plug 'tpope/vim-surround'
 Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 
 " Multiple Plug commands can be written in a single line using | separators
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips' 
 
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 
 " Using a non-default branch
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+" Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 
 " Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
-Plug 'fatih/vim-go', { 'tag': '*' }
+" Plug 'fatih/vim-go', { 'tag': '*' }
+
+" polyglot 
+Plug 'sheerun/vim-polyglot'
 
 " Plugin options
-Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
+" Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
 
 " Plugin outside ~/.vim/plugged with post-update hook
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 " Unmanaged plugin (manually installed and updated)
 " Plug '~/my-prototype-plugin'
 
 " deoplete
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " latex support "
 Plug 'lervag/vimtex'
@@ -57,19 +62,23 @@ Plug 'itchyny/lightline.vim'
 Plug 'Raimondi/delimitMate'
 " Initialize plugin system
 
-"}}}
+" vim eununch
+Plug 'tpope/vim-eunuch'
+""}}}
 
 
 "{{{ Custom Settings
 " show line number
-:set number
+set number
 
 " show mode in status bar
-:set noshowmode
+set noshowmode
 
-:set wildmenu
+set wildmenu
 
 set foldmethod=marker
+
+set nocompatible
 
 "}}}
 
@@ -88,7 +97,7 @@ let g:UltiSnipsEditSplit="vertical"
 
 
 "deoplete opens on startup"
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
 
 
 "lightline configuration
@@ -109,9 +118,9 @@ let g:lightline.active = {
 
 call plug#end()
 
-call deoplete#custom#var('omni', 'input_patterns', {
-      \ 'tex': g:vimtex#re#deoplete
-      \})
+" call deoplete#custom#var('omni', 'input_patterns', {
+"       \ 'tex': g:vimtex#re#deoplete
+"       \})
 
 "}}}
 
@@ -119,7 +128,7 @@ call deoplete#custom#var('omni', 'input_patterns', {
 "{{{ Color Scheme & Theme
 " this sets the colorscheme
 
-source $HOME/.config/nvim/themes/gruvbox.vim
+colorscheme gruvbox-material
 
 "}}}
 
@@ -139,13 +148,15 @@ nnoremap <C-e> :source ~/.config/nvim/init.vim<CR>
 " saving remap
 nnoremap <C-s> :w<CR>
 nnoremap <C-q> :q<CR>
-" latex compiling
+nnoremap <C-o> :Files<CR>
 
+" compiling
 nnoremap <C-l> :Lat<CR>
 nnoremap <C-c> :Comp<CR>
 nnoremap <C-x> :Cexec<CR>
 " inverse search pdf
 
+noremap <BS> :Delete<CR>
 
 "{{{2 VimTex 
 function! SetServerName()
