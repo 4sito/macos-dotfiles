@@ -33,10 +33,10 @@ yabai -m rule --add app="^Safari$" space=2
 yabai -m rule --add app="^(iTerm2|Skim|Preview)$" space=1
 
 # Messagges and Whatsapp
-yabai -m rule --add app="^(WhatsApp|Messages)$" space=4
+yabai -m rule --add app="^(WhatsApp|Messages|Discord)$" space=4
 
 # VSCode
-yabai -m rule --add app="^(Visual Studio Code)$" space=3
+yabai -m rule --add app="^(VSCode)$" space=3
 
 # Spotify
 yabai -m rule --add app="^Spotify$" space=5
