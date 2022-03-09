@@ -62,6 +62,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'Raimondi/delimitMate'
 " Initialize plugin system
 
+Plug 'airblade/vim-gitgutter'
+
 " vim eununch
 Plug 'tpope/vim-eunuch'
 ""}}}
@@ -156,7 +158,8 @@ nnoremap <C-c> :Comp<CR>
 nnoremap <C-x> :Cexec<CR>
 " inverse search pdf
 
-noremap <BS> :Delete<CR>
+noremap <BS> dd
+nnoremap <C-u> :PlugUpdate<CR>
 
 "{{{2 VimTex 
 function! SetServerName()
