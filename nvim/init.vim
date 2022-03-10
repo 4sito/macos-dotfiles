@@ -118,20 +118,19 @@ augroup ncm2
   set completeopt=noinsert,menuone,noselect
   au User Ncm2PopupOpen set completeopt=noinsert,menuone,noselect
   au User Ncm2PopupClose set completeopt=menuone
+  
+  " Cycle through completion entries with tab/shift+tab
+  inoremap <expr> <Tab> pumvisible() ? "\<c-n>" : "\<Tab>"
+  inoremap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+  
+  "inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("<CR>", 'n') 
+  
+  inoremap <expr> <Plug>(cr_prev) execute('let g:_prev_line = getline(".")')
+  inoremap <expr> <Plug>(cr_do) (g:_prev_line == getline('.') ? "\<cr>" : "")
+  inoremap <expr> <Plug>(cr_post) execute('unlet g:_prev_line')
+
+
 augroup END
-
-inoremap <expr> <Plug>(cr_prev) execute('let g:_prev_line = getline(".")')
-inoremap <expr> <Plug>(cr_do) (g:_prev_line == getline('.') ? "\<cr>" : "")
-inoremap <expr> <Plug>(cr_post) execute('unlet g:_prev_line')
-
-imap <expr> <CR> (pumvisible() ? "\<Plug>(cr_prev)\<C-Y>\<Plug>(cr_do)\<Plug>(cr_post)" : "\<CR>")
-
-" Cycle through completion entries with tab/shift+tab
-inoremap <expr> <c-d> pumvisible() ? "\<c-n>" : ""
-inoremap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
-
-" Parameter expansion for selected entry via Enter
-"inoremap <silent> <expr> <CR> (pumvisible() ? ncm2_ultisnips#expand_or("\<CR>", 'n') : "\<CR>")
 
 " Optionally
 let ncm2#complete_length = [[1, 2]]
