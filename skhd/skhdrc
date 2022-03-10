@@ -19,7 +19,7 @@ hyper - backspace : $(yabai -m window $(yabai -m query --windows --window | jq -
 hyper - return : /Applications/iTerm.app/Contents/MacOS/iTerm2
 ctrl - space  : /Applications/Safari.app/Contents/MacOS/Safari
 ctrl  - m      : /Applications/Spotify.app/Contents/MacOS/Spotify
-ctrl  - d      : /Applications/Skim.app/Contents/MacOS/Skim
+#ctrl  - d      : /Applications/Skim.app/Contents/MacOS/Skim
 ctrl  - w      : /Applications/WhatsApp.app/Contents/MacOS/WhatsApp
 
 #focus windows

@@ -24,19 +24,23 @@ Plug 'tpope/vim-surround'
 Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 
 " Multiple Plug commands can be written in a single line using | separators
-Plug 'SirVer/ultisnips' 
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
 " Using a non-default branch
-" Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+"Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 
 " Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
 " Plug 'fatih/vim-go', { 'tag': '*' }
 
 " polyglot 
 Plug 'sheerun/vim-polyglot'
+
+"Plugin
+Plug 'nsf/gocode'
+
 
 " Plugin options
 " Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
@@ -49,6 +53,17 @@ Plug 'junegunn/fzf.vim'
 
 " deoplete
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
+" Plug 'zchee/deoplete-jedi'
+" Plug 'Shougo/deoplete-clangx'
+Plug 'ncm2/ncm2'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-ultisnips'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2-jedi'
+Plug 'ncm2/ncm2-pyclang'
+Plug 'oncomouse/ncm2-biblatex'
 
 " latex support "
 Plug 'lervag/vimtex'
@@ -60,9 +75,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'itchyny/lightline.vim'
 
 Plug 'Raimondi/delimitMate'
-" Initialize plugin system
-
-Plug 'airblade/vim-gitgutter'
 
 " vim eununch
 Plug 'tpope/vim-eunuch'
@@ -86,20 +98,51 @@ set nocompatible
 
 
 "{{{ Plugin Settings
-" Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
-" - https://github.com/Valloric/YouCompleteMe
-" - https://github.com/nvim-lua/completion-nvim
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+
 
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
+set runtimepath+=~/.vim/plugged/my_snippets
 
 "deoplete opens on startup"
-" let g:deoplete#enable_at_startup = 1
+"let g:deoplete#enable_at_startup = 1
+
+set completeopt=noinsert,menuone,noselect
+set shortmess+=c
+
+augroup ncm2
+  au!
+  autocmd BufEnter * call ncm2#enable_for_buffer()
+  set completeopt=noinsert,menuone,noselect
+  au User Ncm2PopupOpen set completeopt=noinsert,menuone,noselect
+  au User Ncm2PopupClose set completeopt=menuone
+augroup END
+
+inoremap <expr> <Plug>(cr_prev) execute('let g:_prev_line = getline(".")')
+inoremap <expr> <Plug>(cr_do) (g:_prev_line == getline('.') ? "\<cr>" : "")
+inoremap <expr> <Plug>(cr_post) execute('unlet g:_prev_line')
+
+imap <expr> <CR> (pumvisible() ? "\<Plug>(cr_prev)\<C-Y>\<Plug>(cr_do)\<Plug>(cr_post)" : "\<CR>")
+
+" Cycle through completion entries with tab/shift+tab
+inoremap <expr> <c-d> pumvisible() ? "\<c-n>" : ""
+inoremap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+
+" Parameter expansion for selected entry via Enter
+"inoremap <silent> <expr> <CR> (pumvisible() ? ncm2_ultisnips#expand_or("\<CR>", 'n') : "\<CR>")
+
+" Optionally
+let ncm2#complete_length = [[1, 2]]
+let g:ncm2#matcher = 'substrfuzzy'
+
+"Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
+" - https://github.com/Valloric/YouCompleteMe
+" - https://github.com/nvim-lua/completion-nvim
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
 
 "lightline configuration
