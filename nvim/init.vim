@@ -63,7 +63,7 @@ Plug 'ncm2/ncm2-ultisnips'
 Plug 'roxma/nvim-yarp'
 Plug 'ncm2/ncm2-jedi'
 Plug 'ncm2/ncm2-pyclang'
-Plug 'oncomouse/ncm2-biblatex'
+" Plug 'oncomouse/ncm2-biblatex'
 
 " latex support "
 Plug 'lervag/vimtex'
@@ -99,6 +99,7 @@ set nocompatible
 
 "{{{ Plugin Settings
 
+let g:ncm2_pyclang#library_path='/opt/homebrew/opt/emscripten/libexec/llvm/lib/libclang.dylib'
 
 
 " If you want :UltiSnipsEdit to split your window.
@@ -120,10 +121,10 @@ augroup ncm2
   au User Ncm2PopupClose set completeopt=menuone
   
   " Cycle through completion entries with tab/shift+tab
-  inoremap <expr> <Tab> pumvisible() ? "\<c-n>" : "\<Tab>"
-  inoremap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+  inoremap <expr> <s-tab> pumvisible() ? "\<c-n>" : "\<s-tab>"
+  " inoremap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
   
-  "inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("<CR>", 'n') 
+  inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("<CR>", 'n') 
   
   inoremap <expr> <Plug>(cr_prev) execute('let g:_prev_line = getline(".")')
   inoremap <expr> <Plug>(cr_do) (g:_prev_line == getline('.') ? "\<cr>" : "")
@@ -132,6 +133,8 @@ augroup ncm2
 
 augroup END
 
+" ~/.atom/.apm
+"
 " Optionally
 let ncm2#complete_length = [[1, 2]]
 let g:ncm2#matcher = 'substrfuzzy'
@@ -181,6 +184,7 @@ colorscheme gruvbox-material
 
 command Lat execute "!pdflatex %:t"
 command Comp execute "!gcc -Wall -Wextra -pedantic -o %<.out %"
+command Cppcomp execute "!g++ -Wall -Wextra -pedantic -o %<.out %"
 command Cexec execute "!./%<.out"
 
 " Nerd Tree remaps
@@ -197,6 +201,7 @@ nnoremap <C-o> :Files<CR>
 " compiling
 nnoremap <C-l> :Lat<CR>
 nnoremap <C-c> :Comp<CR>
+nnoremap <C-i> :Cppcomp<CR>
 nnoremap <C-x> :Cexec<CR>
 " inverse search pdf
 
